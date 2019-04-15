@@ -30,7 +30,7 @@ public abstract class MapRenderer implements MapRendererScheduler {
 
   // Holds the pointer to the native peer after initialisation
   private long nativePtr = 0;
-
+  private boolean hasSurface = true;
   private double expectedRenderTime = 0;
   private MapboxMap.OnFpsChangedListener onFpsChangedListener;
 
@@ -155,5 +155,23 @@ public abstract class MapRenderer implements MapRendererScheduler {
       return;
     }
     expectedRenderTime = 1E9 / maximumFps;
+  }
+
+  /**
+   * Returns true if renderer has a surface to draw on.
+   *
+   * @return returns if renderer has a surface, false otherwise
+   */
+  public boolean hasSurface() {
+    return hasSurface;
+  }
+
+  /**
+   * Set if renderer has a surface to draw on.
+   *
+   * @param hasSurface true if has a surface, false otherwise
+   */
+  public void setHasSurface(boolean hasSurface) {
+    this.hasSurface = hasSurface;
   }
 }
